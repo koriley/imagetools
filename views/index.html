@@ -12,6 +12,13 @@
     <script src="./js/what-input.js"></script>
     <script src="./js/foundation.min.js"></script>
     <script type="text/javascript">
+
+    /*********************
+    This is a very pointed app at this point, answers my very specific need, but it could be a cool app that does some
+    basic image manipulations like resizing, croping, and renaming
+
+    ***********************/
+
         var app = require('electron').remote;
         var dialog = app.dialog;
         var fs = require('fs');
@@ -59,12 +66,16 @@
                 var oldExt = [];
                 var noThumb = [];
                 for (var i = 0; i <= imagePath.length - 1; i++) {
+                  //replacing thumb in the files names
                  noThumb.push(imagePath[i].replace("thumb", "Gallery"));
                   //console.log(noThumb[i]);
+                  //finding what the current extension of the files are
                     oldExt[i] = noThumb[i].substr(noThumb[i].length - 4);
                     //console.log(oldExt[i]);
+                    //creating a string of path with new file extension
                     newExt.push(noThumb[i].replace(oldExt[i], convertExt));
-                    console.log(newExt[i]);
+                    //console.log(newExt[i]);
+                    //this is from npm easyimage, converts my image; write new files
                     easyImg.convert({
                       src:imagePath[i],
                       dst:newExt[i],
