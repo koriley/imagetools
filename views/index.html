@@ -1,0 +1,82 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <button class="dirSelector">click here</button>
+
+    <script src="./js/jquery-3.1.1.min.js" type="text/javascript" onload="window.$ = window.jQuery = module.exports;"></script>
+    <script src="./js/jquery-3.1.1.min.js" type="text/javascript" onload="window.$ = window.jQuery = module.exports;"></script>
+    <script src="./js/what-input.js"></script>
+    <script src="./js/foundation.min.js"></script>
+    <script type="text/javascript">
+        var app = require('electron').remote;
+        var dialog = app.dialog;
+        var fs = require('fs');
+        var convertExt = ".gif";
+        var easyImg = require('easyimage');
+
+        function selectDir() {
+            dialog.showOpenDialog({
+                title: "Select a folder",
+                properties: ["openDirectory"]
+            }, function(folderPaths) {
+                // folderPaths is an array that contains all the selected paths
+                if (folderPaths === undefined) {
+                    console.log("No destination folder selected");
+                    return;
+                } else {
+                    console.log(folderPaths);
+                    return folderPaths;
+                }
+            });
+        }
+
+        var selectFiles = () => {
+            return new Promise((resolve, reject) => {
+                dialog.showOpenDialog({
+                    title: "Select Files",
+                    properties: ["openFile", "multiSelections"]
+                }, (fileNames) => {
+                    if (fileNames === undefined) {
+                        reject("No file selected");
+                    } else {
+                        //  console.log(fileNames);
+                        resolve(fileNames);
+                    }
+                });
+            });
+        }
+
+
+        jQuery(".dirSelector").on("click", function() {
+            console.log("clicked");
+            selectFiles().then((imagePath) => {
+                // console.log(imagePath);
+                var newExt = [];
+                var oldExt = [];
+                var noThumb = [];
+                for (var i = 0; i <= imagePath.length - 1; i++) {
+                 noThumb.push(imagePath[i].replace("thumb", "Gallery"));
+                  //console.log(noThumb[i]);
+                    oldExt[i] = noThumb[i].substr(noThumb[i].length - 4);
+                    //console.log(oldExt[i]);
+                    newExt.push(noThumb[i].replace(oldExt[i], convertExt));
+                    console.log(newExt[i]);
+                    easyImg.convert({
+                      src:imagePath[i],
+                      dst:newExt[i],
+                      quality:10
+                    });
+
+                }
+            });
+
+
+        });
+    </script>
+</body>
+
+</html>

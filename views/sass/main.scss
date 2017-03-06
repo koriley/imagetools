@@ -1,0 +1,154 @@
+$menuColor: #051D29;
+$menuHighLight: #01FBFE;
+$motherColor: #dceff2;
+$redLightWidthHeight: 14px;
+$contextMenuBGC:#F2F2F2;
+
+.topBar {
+    width: 100%;
+    background: $menuColor;
+    height: 25px;
+    -webkit-app-region: drag;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    .topBarContainer {
+        position: relative;
+        top: 5%;
+        left: 0.2%;
+        width: 125px;
+        height: 12px;
+
+        .close {
+            background: red;
+            display: inline-block;
+            border-radius: 100px;
+            width: $redLightWidthHeight;
+            height: $redLightWidthHeight;
+            position: relative;
+            top: 10%;
+            left: 5%;
+        }
+
+        .min {
+            background: yellow;
+            display: inline-block;
+            border-radius: 100px;
+            width: $redLightWidthHeight;
+            height: $redLightWidthHeight;
+            position: relative;
+            top: 10%;
+            left: 7%;
+        }
+
+        .max {
+            background: green;
+            display: inline-block;
+            border-radius: 100px;
+            width: $redLightWidthHeight;
+            height: $redLightWidthHeight;
+            position: relative;
+            top: 10%;
+            left: 10%;
+        }
+    }
+}
+
+.menuColumn {
+    background: url('../img/cartographer.png') $menuColor;
+    color: $menuHighLight;
+
+    .projects li {
+        color: $menuHighLight;
+        padding: 10px;
+        border-radius: 17px;
+
+        &:hover {
+            background: $menuHighLight;
+            color: $menuColor;
+            box-shadow: 0 0 10px 3px $menuHighLight;
+        }
+    }
+
+    .create {
+        list-style: none;
+
+        li h3 {
+            margin-top: 5px;
+            margin-bottom: -13px;
+            border: 1px solid $menuHighLight;
+            background: $menuColor;
+
+            &:active {
+                box-shadow: 4px 4px 5px #13606d inset;
+                //text-shadow: 3px 3px 15px $menuHighLight;
+            }
+        }
+    }
+}
+
+.mother {
+    background: $motherColor;
+}
+
+.fullHeight {
+    display: inline-block;
+}
+
+#creator, #editor {
+    background: url('../img/cartographer.png') $menuColor;
+    color: $menuHighLight;
+
+    label {
+        color: $menuHighLight;
+    }
+}
+
+.glow {
+    background: $menuHighLight;
+    color: $menuColor;
+    box-shadow: 0 0 10px 3px $menuHighLight;
+    &:hover, &:focus, &:visited{
+      background: $menuHighLight;
+      color: $menuColor;
+    }
+    &:active{
+      box-shadow: 4px 4px 5px #13606d inset;
+    }
+}
+.error{
+  color:red !important;
+}
+
+.newDialog{
+  background: $contextMenuBGC;
+  color:black;
+  width:150px;
+  border-radius: 2px;
+  ul{
+    list-style: none;
+    color:black;
+    margin-left:0px;
+    li{
+      width:100%;
+      text-align:left !important;
+      padding:0px !important;
+
+      color:black !important;
+
+      border-radius: 0px !important;
+      &:hover{
+        background:blue !important;
+        color:white !important;
+        box-shadow:0px 0px 0px blue !important;
+        padding: 0px !important;
+        border-radius: 0px !important;
+      }
+    }
+  }
+
+}
